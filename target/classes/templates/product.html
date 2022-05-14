@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Products</title>
+</head>
+
+<body>
+	<h1>Products</h1>
+	<form method="POST" th:object="${product}">
+		<table border="1">
+            <tr>
+                <th>Code</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Action</th>
+            </tr>
+			<div th:each="product : ${products}">
+				<tr>
+                    <td><p><span th:text="${product.code}"></span></p></td>
+                    <td><p><span th:text="${product.description}"></span></p></td>
+                    <td><p><span th:text="${product.getPriceCurrencyFormat()}"></span></td>
+                    <td>
+                        <a th:href="@{'/editProduct/edit'(code=${product.code})}"> Edit</a>
+                        <a th:href="@{'/deleteProduct/delete'(code=${product.code})}"> Delete</a>
+                    </td>
+                    
+                </tr>
+            </div>
+        </table>
+		<div>
+			<button>Add Product</button>
+		</div>
+	</form>
+</body>
+
+</html>
